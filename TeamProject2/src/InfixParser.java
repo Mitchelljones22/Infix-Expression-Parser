@@ -4,19 +4,20 @@ import java.util.Scanner;
 
 
 public class InfixParser {
-
-    
     public static void main(String[] args) throws Exception {
         File expresisonFile = new File("TeamProject2/src/expressions.txt");
         Scanner fileScanner = new Scanner(expresisonFile);
 
         while (fileScanner.hasNextLine()){ // Loops for evey line in expressions.txt
             String expression = (fileScanner.nextLine()); // Expression = contents of line
-            int answer = parseExpression(expression); // Expression is evaluated as answer
             System.out.println("-".repeat(30));
             System.out.println("Expression: " + expression);
-            System.out.println("Solution: " + answer);
-        
+            try {
+                int answer = parseExpression(expression); // Expression is evaluated as answer
+                System.out.println("Solution: " + answer);
+            } catch (IllegalArgumentException e) { // Divide by zero error
+                System.out.println("Error: " + e.getMessage());
+            }
         }
         System.out.println("-".repeat(30));
         fileScanner.close();

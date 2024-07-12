@@ -59,7 +59,12 @@ class Operator {
             case "*":
                 return leftOperand * rightOperand;
             case "/":
-                return leftOperand / rightOperand;
+                if (rightOperand != 0){
+                    return leftOperand / rightOperand;
+                }
+                else{
+                    throw new IllegalArgumentException("Divid by zero error");
+                }
             case "^":
                 return (int) Math.pow(leftOperand, rightOperand);
             case "%":
