@@ -1,15 +1,27 @@
 import java.util.Stack;
+import java.io.File;
+import java.util.Scanner;
+
 
 public class InfixParser {
 
+    
     public static void main(String[] args) throws Exception {
-        String expression = "5 ^ 2 % 7 && (4 - 4) "; // Expression to be parsed and solved
-        expression = expression.replaceAll("\\s", ""); // Removes all whitespace from expression
-        int answer = parseExpression(expression);
-        System.out.println("Expression: " + expression);
-        System.out.println("Solution: " + answer);
-    }
+        File expresisonFile = new File("TeamProject2/src/expressions.txt");
+        Scanner fileScanner = new Scanner(expresisonFile);
 
+        while (fileScanner.hasNextLine()){ // Loops for evey line in expressions.txt
+            String expression = (fileScanner.nextLine()); // Expression = contents of line
+            int answer = parseExpression(expression); // Expression is evaluated as answer
+            System.out.println("-".repeat(30));
+            System.out.println("Expression: " + expression);
+            System.out.println("Solution: " + answer);
+        
+        }
+        System.out.println("-".repeat(30));
+        fileScanner.close();
+}
+        
     /** Parses an infix expression and solves
         @param equation: expression to be parsed
         @return: Solution of parsed expression
